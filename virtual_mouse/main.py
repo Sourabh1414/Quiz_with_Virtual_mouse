@@ -30,7 +30,7 @@ def find_finger_tip(processed):
 def move_mouse(index_finger_tip):
     if index_finger_tip is not None:
         x = int(index_finger_tip.x * screen_width)
-        y = int(index_finger_tip.y / 2 * screen_height)
+        y = int(index_finger_tip.y * screen_height)
         pyautogui.moveTo(x, y)
 
 
@@ -77,14 +77,14 @@ def detect_gesture(frame, landmark_list, processed):
         elif is_left_click(landmark_list,  thumb_index_dist):
             mouse.press(Button.left)
             mouse.release(Button.left)
-            cv2.putText(frame, "Left Click", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+            cv2.putText(frame, "Left Click", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 20,0), 2)
         elif is_right_click(landmark_list, thumb_index_dist):
             mouse.press(Button.right)
             mouse.release(Button.right)
             cv2.putText(frame, "Right Click", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
         elif is_double_click(landmark_list, thumb_index_dist):
             pyautogui.doubleClick()
-            cv2.putText(frame, "Double Click", (50, 50), FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 2)
+            cv2.putText(frame, "Double Click", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (20, 174, 128), 2)
         elif is_screenshot(landmark_list,thumb_index_dist ):
             im1 = pyautogui.screenshot()
             label = random.randint(1, 1000)
@@ -124,7 +124,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-
 
 
 
